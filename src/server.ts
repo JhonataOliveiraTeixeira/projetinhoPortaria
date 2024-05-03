@@ -1,19 +1,15 @@
 import fastify from "fastify";
-import crypto from "node:crypto"
-import {knexx} from "./database"
+import { env } from "./env";
+import { add_person } from "./routes/add_person";
 
 const app = fastify()
 
-app.get("/hello", async () => {
-    const adictionPerson = await knexx('person')
-    .where("session-id", 2)
-    .select("*")
-    return adictionPerson
-    
+app.register(add_person,{
+    prefix:'person'
 })
 
 app.listen({
-    port:3333
+    port: env.PORT,
 }).then(()=>{
     console.log("HTTP server running")
 })
