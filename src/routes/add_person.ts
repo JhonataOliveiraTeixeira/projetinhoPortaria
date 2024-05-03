@@ -25,7 +25,7 @@ export async function add_person(app: FastifyInstance) {
     })
 
 
-    app.get("/:search",async (request) => {
+    app.get("/user/:search",async (request) => {
 
         const userNumber = request.url
         const urlSplit = userNumber.split("/")
@@ -37,7 +37,7 @@ export async function add_person(app: FastifyInstance) {
     })
 
 
-    app.put("/:search",async (request,reply) => {
+    app.put("/atualizar/:search",async (request,reply) => {
         try{
 
         const userNumber = request.url
@@ -70,7 +70,7 @@ export async function add_person(app: FastifyInstance) {
     })
 
 
-    app.post('/',async (request, reply) =>{
+    app.post('/criar',async (request, reply) =>{
         try{
         const createPerson = z.object({
             "name-person":z.string(),
